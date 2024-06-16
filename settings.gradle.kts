@@ -21,6 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "MemePick"
 include(":app")
-include(":core")
-include(":features:memes")
 include(":data")
+include(":features:memes")
+include(":core:presentation")
+include(":core:theme")

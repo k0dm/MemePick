@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.bugbender.memepick.memes"
+    namespace = "com.bugbender.memepick.presentation"
     compileSdk = 34
 
     defaultConfig {
@@ -34,8 +36,11 @@ android {
 
 dependencies {
 
-    //modules
-    implementation(project(":core:presentation"))
+    //hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    implementation(libs.androidx.activity.ktx)
 
     //Base libs
     implementation(libs.androidx.core.ktx)
@@ -44,4 +49,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
