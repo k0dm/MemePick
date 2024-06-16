@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.bugbender.memepick.memes"
+    namespace = "com.bugbender.memepick.theme"
     compileSdk = 34
 
     defaultConfig {
@@ -34,10 +34,6 @@ android {
 
 dependencies {
 
-    //modules
-    implementation(project(":core:presentation"))
-
-    //Base libs
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

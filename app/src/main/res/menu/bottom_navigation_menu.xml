@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/memes"
+        android:enabled="true"
+        android:icon="@drawable/meme_icon"
+        android:title="@string/memes"/>
+    <item
+        android:id="@+id/favorites"
+        android:icon="@drawable/favorites_icon"
+        android:title="@string/favorites"/>
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profile_icon"
+        android:title="@string/profile"/>
+</menu>
