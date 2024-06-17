@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
-    namespace = "com.bugbender.memepick.memes"
+    namespace = "com.bugbender.memepick.data.memes.api"
     compileSdk = 34
 
     defaultConfig {
@@ -32,36 +30,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
 
-    //modules
-    implementation(project(":core:presentation"))
-    implementation(project(":core:theme"))
-    implementation(project(":data:memes-api"))
-
-    //hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-
-    //viewModel by viewModels()
-    implementation(libs.androidx.fragment.ktx)
-
-    //Base libs
+    //base libs
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-}
-
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
 }

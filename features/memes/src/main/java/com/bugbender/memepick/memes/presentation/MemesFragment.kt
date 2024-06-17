@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bugbender.memepick.memes.databinding.FragmentMemesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MemesFragment : Fragment() {
 
     private var _binding: FragmentMemesBinding? = null
     private val binding: FragmentMemesBinding get() = _binding!!
+    private val viewModel: MemesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,6 +28,9 @@ class MemesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.memeButton.setOnClickListener {
+            viewModel.getMeme()
+        }
     }
 
     override fun onDestroyView() {
