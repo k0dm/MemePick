@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
+    //viewModel by viewModels()
     implementation(libs.androidx.activity.ktx)
 
     //Base libs

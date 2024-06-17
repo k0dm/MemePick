@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="meme_pick">Meme Pick</string>
+    <string name="meme">MEME</string>
+    <string name="meme_author"><b>author:</b> %1$s</string>
+    <string name="meme_title"><b>title:</b> %1$s</string>
+</resources>
