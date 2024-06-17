@@ -13,13 +13,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val _binding: ActivityMainBinding? = null
+    private var _binding: ActivityMainBinding? = null
     private val binding: ActivityMainBinding get() = _binding!!
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         viewModel.liveData().observe(this) { screen ->
             screen.show(binding.container.id, supportFragmentManager)

@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -30,12 +32,24 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
 
     //modules
     implementation(project(":core:presentation"))
+    implementation(project(":core:theme"))
+
+    //hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
+    //viewModel by viewModels()
+    implementation(libs.androidx.fragment.ktx)
 
     //Base libs
     implementation(libs.androidx.core.ktx)
@@ -44,4 +58,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
