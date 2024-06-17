@@ -43,16 +43,18 @@ android {
 dependencies {
 
     //modules
-    implementation(project(":data"))
-    implementation(project(":features:memes"))
     implementation(project(":core:presentation"))
     implementation(project(":core:theme"))
+    implementation(project(":core:data"))
+    implementation(project(":features:memes"))
+    implementation(project(":data:memes-api"))
+    implementation(project(":data:memes-imp"))
 
     //hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
-    //Base libs
+    //base libs
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

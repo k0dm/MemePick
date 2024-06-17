@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.bugbender.memepick.memes"
+    namespace = "com.bugbender.memepick.core.data"
     compileSdk = 34
 
     defaultConfig {
@@ -32,27 +32,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
-
-    //modules
-    implementation(project(":core:presentation"))
-    implementation(project(":core:theme"))
-    implementation(project(":data:memes-api"))
 
     //hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
-    //viewModel by viewModels()
-    implementation(libs.androidx.fragment.ktx)
-
-    //Base libs
+    //base libs
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
