@@ -4,6 +4,6 @@ import androidx.lifecycle.LiveData
 
 interface ProvideLiveData<T : Any> {
 
-    fun liveData(): LiveData<T>
+    fun liveData(): LiveData<T> = throw IllegalStateException("Don't use in Unit tests")
 }
 
