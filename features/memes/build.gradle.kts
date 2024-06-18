@@ -49,6 +49,9 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
+    //glide
+    implementation(libs.glide)
+
     //viewModel by viewModels()
     implementation(libs.androidx.fragment.ktx)
 

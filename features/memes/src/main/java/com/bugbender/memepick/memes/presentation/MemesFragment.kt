@@ -1,6 +1,7 @@
 package com.bugbender.memepick.memes.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,13 @@ class MemesFragment : Fragment() {
         binding.memeButton.setOnClickListener {
             viewModel.getMeme()
         }
+
+        viewModel.liveData().observe(viewLifecycleOwner) { uiState->
+            Log.d("k0dm", uiState.toString())
+            uiState.show(binding)
+        }
+
+        viewModel.init(isFirstRun = savedInstanceState == null)
     }
 
     override fun onDestroyView() {
