@@ -39,7 +39,6 @@ android {
 }
 
 dependencies {
-
     //modules
     implementation(project(":core:presentation"))
     implementation(project(":core:theme"))
@@ -51,9 +50,6 @@ dependencies {
 
     //glide
     implementation(libs.glide)
-
-    //viewModel by viewModels()
-    implementation(libs.androidx.fragment.ktx)
 
     //Base libs
     implementation(libs.androidx.core.ktx)

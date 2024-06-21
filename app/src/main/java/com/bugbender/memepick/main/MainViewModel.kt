@@ -16,8 +16,12 @@ class MainViewModel @Inject constructor(
 
     fun init(isFirstRun: Boolean) {
         if (isFirstRun) {
-            navigation.updateUi(MemesScreen)
+            navigateTo(MemesScreen)
         }
+    }
+
+    fun navigateTo(screen: Screen) {
+        navigation.updateUi(screen)
     }
 
     override fun liveData() = navigation.liveData()
