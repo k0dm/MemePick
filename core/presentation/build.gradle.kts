@@ -32,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -41,7 +44,8 @@ dependencies {
     kapt(libs.hilt.android.compiler)
 
     //viewModel by viewModels()
-    implementation(libs.androidx.activity.ktx)
+    api(libs.androidx.activity.ktx)
+    api(libs.androidx.fragment.ktx)
 
     //Base libs
     implementation(libs.androidx.core.ktx)

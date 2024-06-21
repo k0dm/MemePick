@@ -1,5 +1,6 @@
 package com.bugbender.memepick.di
 
+import com.bugbender.memepick.main.BaseNavigation
 import com.bugbender.memepick.presentation.Navigation
 import com.bugbender.memepick.presentation.RunAsync
 import dagger.Binds
@@ -12,7 +13,10 @@ import dagger.hilt.components.SingletonComponent
 abstract class MainModule {
 
     @Binds
-    abstract fun bindsNavigationMutable(navigation: Navigation.Base): Navigation.Mutable
+    abstract fun bindsNavigationMutable(navigation: BaseNavigation): Navigation.Mutable
+
+    @Binds
+    abstract fun bindsNavigationUpdate(navigation: BaseNavigation): Navigation.Update
 
     @Binds
     abstract fun bindRunAsync(runAsync: RunAsync.Base): RunAsync

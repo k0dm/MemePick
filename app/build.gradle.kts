@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
@@ -41,7 +42,6 @@ android {
 }
 
 dependencies {
-
     //modules
     implementation(project(":core:presentation"))
     implementation(project(":core:theme"))
@@ -50,6 +50,8 @@ dependencies {
     implementation(project(":features:memes"))
     implementation(project(":data:memes-api"))
     implementation(project(":data:memes-imp"))
+    implementation(project(":features:authentication"))
+    implementation(project(":features:profile"))
 
     //hilt
     implementation(libs.hilt.android)

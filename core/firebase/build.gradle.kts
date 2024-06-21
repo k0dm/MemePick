@@ -34,14 +34,19 @@ android {
 }
 
 dependencies {
+    //modules
+    implementation(project(":core:data"))
 
-    // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    //Firebase and auth
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)  //Firebase Authentication library
+    implementation(libs.play.services.auth) // Google Play services library for auth
 
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-
-    // Add the dependency for the Firebase SDK for Google Analytics
-    implementation("com.google.firebase:firebase-analytics")
+    //Google auth
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)     //for credentials support from play services, for devices running  Android 13 and below.
+    implementation(libs.googleid)
 
     //base libs
     implementation(libs.androidx.core.ktx)

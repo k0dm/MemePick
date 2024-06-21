@@ -19,3 +19,4 @@ interface LiveDataWrapper<T : Any> : UpdateUi<T>, ProvideLiveData<T> {
         liveData: MutableLiveData<T> = SingleLiveEvent()
     ) : Base<T>(liveData)
 }
+

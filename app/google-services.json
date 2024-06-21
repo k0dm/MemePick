@@ -1,26 +1,44 @@
 {
   "project_info": {
-    "project_number": "629418132110",
-    "project_id": "memepick-d7bcd",
-    "storage_bucket": "memepick-d7bcd.appspot.com"
+    "project_number": "61006766565",
+    "project_id": "auth-379c4",
+    "storage_bucket": "auth-379c4.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:629418132110:android:a8b13b075b77b93e6dbfdf",
+        "mobilesdk_app_id": "1:61006766565:android:2341159d322ce8ac890f0c",
         "android_client_info": {
           "package_name": "com.bugbender.memepick"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "61006766565-3f2gma3pdqhcun6uuququbfkr1lvdgdc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bugbender.memepick",
+            "certificate_hash": "1ddbd8ccb7299b6956819035cd777725420f6389"
+          }
+        },
+        {
+          "client_id": "61006766565-uds0r964l3qskht6rg87bq0r66kgdves.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyDP52XbrhW2LhNq1wrYObzqgiSPLoiPtMU"
+          "current_key": "AIzaSyAKlH1e69qlDLJZ0FMiEpSzh_KEc98WPX0"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61006766565-uds0r964l3qskht6rg87bq0r66kgdves.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

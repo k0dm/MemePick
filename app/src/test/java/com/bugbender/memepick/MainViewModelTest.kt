@@ -36,6 +36,13 @@ class MainViewModelTest {
 private class FakeNavigation : Navigation.Mutable {
 
     private val actualScreens: MutableList<Screen> = mutableListOf()
+    override fun goToAuthentication() {
+        TODO("Not yet implemented")
+    }
+
+    override fun goToProfile() {
+        TODO("Not yet implemented")
+    }
 
     override fun updateUi(value: Screen) {
         actualScreens.add(value)
