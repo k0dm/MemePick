@@ -50,7 +50,8 @@ interface MemesUiState {
         override fun show(binding: FragmentMemesBinding) = with(binding) {
             memeInfoLL.visibility = View.GONE
 
-            Glide.with(memeImageView.context).load(R.drawable.error).into(memeImageView)
+            Glide.with(memeImageView.context).load(com.bugbender.memepick.theme.R.drawable.error)
+                .into(memeImageView)
 
             messageTextView.setTextColor(
                 ContextCompat.getColor(
@@ -93,6 +94,4 @@ interface MemesUiState {
             )
         }
     }
-
-    object Empty : MemesUiState
 }

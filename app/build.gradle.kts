@@ -47,10 +47,17 @@ dependencies {
     implementation(project(":core:theme"))
     implementation(project(":core:data"))
     implementation(project(":core:firebase"))
+
     implementation(project(":features:memes"))
     implementation(project(":data:memes-api"))
     implementation(project(":data:memes-imp"))
+
+    implementation(project(":features:favorites"))
+    implementation(project(":data:favorites-api"))
+    implementation(project(":data:favorites-imp"))
+
     implementation(project(":features:authentication"))
+
     implementation(project(":features:profile"))
 
     //hilt

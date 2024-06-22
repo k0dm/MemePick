@@ -46,7 +46,6 @@ dependencies {
     //imageview gif
     implementation(libs.android.gif.drawable)
 
-
     //hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)

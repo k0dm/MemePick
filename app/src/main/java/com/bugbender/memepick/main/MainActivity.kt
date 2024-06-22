@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.bugbender.memepick.R
 import com.bugbender.memepick.authentication.AuthenticationScreen
 import com.bugbender.memepick.databinding.ActivityMainBinding
+import com.bugbender.memepick.favorites.FavoritesScreen
 import com.bugbender.memepick.memes.presentation.MemesScreen
 import com.bugbender.profile.ProfileScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.memes -> {
                     viewModel.navigateTo(screen = MemesScreen)
+                    true
+                }
+
+                R.id.favorites -> {
+                    viewModel.navigateTo(screen = FavoritesScreen)
                     true
                 }
 

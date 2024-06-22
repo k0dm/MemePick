@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -35,14 +33,12 @@ android {
 }
 
 dependencies {
-
     //modules
     implementation(project(":core:data"))
     implementation(project(":data:memes-api"))
 
-    //hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    //di
+    implementation(group = "javax.inject", name = "javax.inject", version = "1")
 
     //retrofit and logger
     api(libs.retrofit)
@@ -56,9 +52,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-}
-
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
 }
