@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MemesViewModel @Inject constructor(
-    private val repository: MemesRepository,
+    private val memesRepository: MemesRepository,
     private val liveDataWrapper: MemesLiveDataWrapper,
     private val mapper: MemeResult.Mapper,
     runAsync: RunAsync
@@ -27,7 +27,7 @@ class MemesViewModel @Inject constructor(
         liveDataWrapper.updateUi(MemesUiState.Progress)
         runAsync({
             delay(10000)
-            repository.randomMeme()
+            memesRepository.randomMeme()
         }) { memeResult ->
             memeResult.map(mapper)
         }

@@ -43,6 +43,7 @@ dependencies {
     implementation(project(":core:presentation"))
     implementation(project(":core:theme"))
     implementation(project(":data:memes-api"))
+    implementation(project(":data:favorites-api"))
 
     //hilt
     implementation(libs.hilt.android)

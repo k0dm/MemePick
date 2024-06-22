@@ -27,7 +27,7 @@ class MemesViewModelTest {
         mapper = FakeMemeResultMapper()
         runAsync = FakeRunAsync()
         viewModel = MemesViewModel(
-            repository = repository,
+            memesRepository = repository,
             liveDataWrapper = liveDataWrapper,
             mapper = mapper,
             runAsync = runAsync
