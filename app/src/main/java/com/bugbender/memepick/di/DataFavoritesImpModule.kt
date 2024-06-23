@@ -1,5 +1,6 @@
 package com.bugbender.memepick.di
 
+import com.bugbender.memepick.data.favorites.api.FavoriteContainsInCache
 import com.bugbender.memepick.data.favorites.api.FavoritesRepository
 import com.bugbender.memepick.data.favorites.imp.BaseFavoriteRepository
 import com.bugbender.memepick.data.favorites.imp.cache.FavoriteCacheDataSource
@@ -18,6 +19,10 @@ abstract class DataFavoritesImpModule {
     @Binds
     @ViewModelScoped
     abstract fun bindsFavoriteCacheDataSource(datasource: FavoriteCacheDataSource.Base): FavoriteCacheDataSource
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindFavoritesCacheDataSourceContains(datasource: FavoriteCacheDataSource.Base): FavoriteContainsInCache
 
     @Binds
     @ViewModelScoped

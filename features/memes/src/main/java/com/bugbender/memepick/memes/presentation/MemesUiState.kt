@@ -1,22 +1,38 @@
 package com.bugbender.memepick.memes.presentation
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.bugbender.memepick.data.favorites.api.FavoriteMeme
+import com.bugbender.memepick.data.favorites.api.FavoritesRepository
 import com.bugbender.memepick.memes.R
 import com.bugbender.memepick.memes.databinding.FragmentMemesBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.gif.GifDrawable
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import java.io.ByteArrayOutputStream
 
 interface MemesUiState {
 
     fun show(binding: FragmentMemesBinding) = Unit
 
-    data class Base(
+    suspend fun changeFavorite(favoritesRepository: FavoritesRepository.AddAndRemove): MemesUiState =
+        this
+
+    abstract class Base(
         private val postLink: String,
         private val subreddit: String,
         private val title: String,
         private val url: String,
         private val nsfw: Boolean,
         private val author: String,
+        private val imageData: ByteArray,
+        private val isFavorite: Boolean
     ) : MemesUiState {
 
         override fun show(binding: FragmentMemesBinding) = with(binding) {
@@ -27,14 +43,18 @@ interface MemesUiState {
                 memeTitleTextView.context.getString(R.string.meme_title, title)
             subredditTextView.text = subreddit
 
-            Glide.with(memeImageView.context).load(url)
-                .thumbnail(Glide.with(memeImageView.context).load(R.drawable.tenor).fitCenter())
+            val context = memeImageView.context
+            Glide.with(context)
+                .load(url)
+                .thumbnail(Glide.with(context).load(R.drawable.still_waiting))
                 .fitCenter()
-                .into(memeImageView);
+                .into(memeImageView)
+
             messageTextView.visibility = View.GONE
 
             shareViaTelegramButton.visibility = View.VISIBLE
             favoriteButton.visibility = View.VISIBLE
+            favoriteButton.setImageResource(if (isFavorite) R.drawable.favorite_filled_48 else R.drawable.favorite_outline_48)
             memeButton.isEnabled = true
             memeButton.setBackgroundColor(
                 ContextCompat.getColor(
@@ -43,14 +63,56 @@ interface MemesUiState {
                 )
             )
         }
+
+        override suspend fun changeFavorite(favoritesRepository: FavoritesRepository.AddAndRemove): MemesUiState {
+            return if (isFavorite) {
+                favoritesRepository.removeMeme(postLink = postLink)
+                NotFavorite(postLink, subreddit, title, url, nsfw, author, imageData)
+            } else {
+                favoritesRepository.addMeme(
+                    FavoriteMeme(
+                        postLink,
+                        subreddit,
+                        title,
+                        url,
+                        nsfw,
+                        author,
+                        imageData
+                    )
+                )
+                Favorite(postLink, subreddit, title, url, nsfw, author, imageData)
+            }
+        }
     }
+
+    data class NotFavorite(
+        private val postLink: String,
+        private val subreddit: String,
+        private val title: String,
+        private val url: String,
+        private val nsfw: Boolean,
+        private val author: String,
+        private val imageData: ByteArray,
+    ) : Base(postLink, subreddit, title, url, nsfw, author, imageData, isFavorite = false)
+
+    data class Favorite(
+        private val postLink: String,
+        private val subreddit: String,
+        private val title: String,
+        private val url: String,
+        private val nsfw: Boolean,
+        private val author: String,
+        private val imageData: ByteArray,
+    ) : Base(postLink, subreddit, title, url, nsfw, author, imageData, isFavorite = true)
 
     data class Error(private val message: String) : MemesUiState {
 
         override fun show(binding: FragmentMemesBinding) = with(binding) {
             memeInfoLL.visibility = View.GONE
 
-            Glide.with(memeImageView.context).load(com.bugbender.memepick.theme.R.drawable.error)
+            Glide.with(memeImageView.context)
+                .load(com.bugbender.memepick.theme.R.drawable.error)
+                .fitCenter()
                 .into(memeImageView)
 
             messageTextView.setTextColor(
@@ -73,7 +135,13 @@ interface MemesUiState {
         override fun show(binding: FragmentMemesBinding) = with(binding) {
             memeInfoLL.visibility = View.GONE
 
-            Glide.with(memeImageView.context).load(R.drawable.tenor).into(memeImageView)
+            val context = memeImageView.context
+
+            Glide.with(context)
+                .load(R.drawable.tenor)
+                .fitCenter()
+                .into(memeImageView)
+
             messageTextView.setTextColor(
                 ContextCompat.getColor(
                     messageTextView.context,

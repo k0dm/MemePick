@@ -1,5 +1,7 @@
 package com.bugbender.memepick.memes.presentation
 
+import android.graphics.Bitmap
+import com.bugbender.memepick.data.favorites.api.FavoritesRepository
 import com.bugbender.memepick.data.memes.api.MemeResult
 import com.bugbender.memepick.data.memes.api.MemesRepository
 import com.bugbender.memepick.presentation.BaseViewModel
@@ -12,6 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MemesViewModel @Inject constructor(
     private val memesRepository: MemesRepository,
+    private val favoritesRepository: FavoritesRepository.AddAndRemove,
     private val liveDataWrapper: MemesLiveDataWrapper,
     private val mapper: MemeResult.Mapper,
     runAsync: RunAsync
@@ -26,10 +29,18 @@ class MemesViewModel @Inject constructor(
     fun getMeme() {
         liveDataWrapper.updateUi(MemesUiState.Progress)
         runAsync({
-            delay(10000)
             memesRepository.randomMeme()
         }) { memeResult ->
             memeResult.map(mapper)
+        }
+    }
+
+    fun changeFavorite() {
+        val uiState = liveDataWrapper.changeFavorite()
+        runAsync({
+            uiState.changeFavorite(favoritesRepository)
+        }) { uiState ->
+            liveDataWrapper.updateUi(uiState)
         }
     }
 

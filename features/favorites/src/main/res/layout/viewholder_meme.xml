@@ -15,13 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
-        android:weightSum="3">
+        android:padding="8dp">
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
@@ -42,7 +41,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                tools:text="title: He's a 355-Foot Tall Lizard with Radioactive Breath! Don't Mess with Him!dfsadfas" />
+                tools:text="dsftitle: He's a 355-Foot Tall Lizard with Radioactive Breath! Don't Mess with Him!dfsadfas" />
 
 
             <TextView
@@ -58,16 +57,18 @@
 
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/memeFavoriteImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/error" />
+                android:layout_width="108dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/more_info" />
 
             <ImageButton
                 android:id="@+id/removeMemeImageButton"

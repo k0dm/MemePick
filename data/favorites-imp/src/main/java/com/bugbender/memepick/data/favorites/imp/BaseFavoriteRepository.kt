@@ -21,13 +21,13 @@ class BaseFavoriteRepository @Inject constructor(
         else
             FavoritesResult.Success(memes = cacheMemes.map {
                 FavoriteMeme(
-                    id = it.id,
                     postLink = it.postLink,
                     subreddit = it.subreddit,
                     title = it.title,
                     url = it.url,
                     nsfw = it.nsfw,
-                    author = it.author
+                    author = it.author,
+                    imageData = it.imageData
                 )
             })
     }
@@ -35,5 +35,5 @@ class BaseFavoriteRepository @Inject constructor(
     override suspend fun addMeme(meme: FavoriteMeme) =
         cacheDataSource.add(meme.map(toMemeEntityMapper))
 
-    override suspend fun removeMeme(id: Long) = cacheDataSource.remove(id)
+    override suspend fun removeMeme(postLink: String) = cacheDataSource.remove(postLink)
 }
