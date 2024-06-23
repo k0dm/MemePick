@@ -7,10 +7,11 @@ interface FavoritesRepository {
     }
 
     interface Remove {
-        suspend fun removeMeme(id: Long)
+        suspend fun removeMeme(postLink: String)
     }
 
     interface Get {
+
         suspend fun allMemes(): FavoritesResult
     }
 

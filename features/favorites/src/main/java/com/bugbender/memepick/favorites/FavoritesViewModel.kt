@@ -23,8 +23,8 @@ class FavoritesViewModel @Inject constructor(
         favoritesResult.map(mapper = mapper)
     }
 
-    override fun removeMemeById(id: Long) = runAsync({
-        repository.removeMeme(id = id)
+    override fun removeMeme(postLink: String) = runAsync({
+        repository.removeMeme(postLink = postLink)
     }) {
         //todo refresh the list in the adapter
     }

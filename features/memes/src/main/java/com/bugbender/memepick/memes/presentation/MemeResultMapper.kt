@@ -13,17 +13,31 @@ class MemeResultMapper @Inject constructor(
         title: String,
         url: String,
         nsfw: Boolean,
-        author: String
+        author: String,
+        imageData: ByteArray,
+        isFavorite: Boolean
     ) {
         liveDataWrapper.updateUi(
-            MemesUiState.Base(
-                postLink = postLink,
-                subreddit = subreddit,
-                title = title,
-                url = url,
-                nsfw = nsfw,
-                author = author
-            )
+            if (isFavorite)
+                MemesUiState.Favorite(
+                    postLink = postLink,
+                    subreddit = subreddit,
+                    title = title,
+                    url = url,
+                    nsfw = nsfw,
+                    author = author,
+                    imageData = imageData
+                )
+            else
+                MemesUiState.NotFavorite(
+                    postLink = postLink,
+                    subreddit = subreddit,
+                    title = title,
+                    url = url,
+                    nsfw = nsfw,
+                    author = author,
+                    imageData = imageData
+                )
         )
     }
 

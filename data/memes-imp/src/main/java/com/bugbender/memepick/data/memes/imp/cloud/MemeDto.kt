@@ -15,4 +15,6 @@ data class MemeDto(
     val nsfw: Boolean,
     @SerializedName("author")
     val author: String,
+    @SerializedName("preview")
+    val previews: List<String>
 )

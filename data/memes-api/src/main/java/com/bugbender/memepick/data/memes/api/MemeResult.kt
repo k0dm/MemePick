@@ -10,7 +10,9 @@ interface MemeResult {
             title: String,
             url: String,
             nsfw: Boolean,
-            author: String
+            author: String,
+            imageData: ByteArray,
+            isFavorite: Boolean
         )
 
         fun mapError(message: String)
@@ -25,10 +27,12 @@ interface MemeResult {
         private val url: String,
         private val nsfw: Boolean,
         private val author: String,
+        private val imageData: ByteArray,
+        private val isFavorite: Boolean
     ) : MemeResult {
 
         override fun map(mapper: Mapper) {
-            mapper.mapSuccess(postLink, subreddit, title, url, nsfw, author)
+            mapper.mapSuccess(postLink, subreddit, title, url, nsfw, author, imageData, isFavorite)
         }
     }
 

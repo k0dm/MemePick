@@ -14,6 +14,9 @@ interface FavoritesDao {
     @Query("SELECT * FROM favorite_meme")
     suspend fun memes(): List<MemeEntity>
 
-    @Query("DELETE FROM favorite_meme WHERE id = :id")
-    suspend fun remove(id: Long)
+    @Query("DELETE FROM favorite_meme WHERE post_link = :postLink")
+    suspend fun removeByPostLink(postLink: String)
+
+    @Query("SELECT * FROM favorite_meme WHERE post_link =:postLink")
+    suspend fun findByPostLink(postLink: String): MemeEntity?
 }

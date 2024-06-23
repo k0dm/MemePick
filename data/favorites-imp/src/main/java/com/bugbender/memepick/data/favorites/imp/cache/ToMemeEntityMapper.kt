@@ -8,21 +8,21 @@ interface ToMemeEntityMapper : FavoriteMemeMapper<MemeEntity> {
     class Base @Inject constructor() : ToMemeEntityMapper {
 
         override fun map(
-            id: Long,
             postLink: String,
             subreddit: String,
             title: String,
             url: String,
             nsfw: Boolean,
-            author: String
+            author: String,
+            imageData: ByteArray
         ) = MemeEntity(
-            id = id,
             postLink = postLink,
             subreddit = subreddit,
             title = title,
             url = url,
             nsfw = nsfw,
-            author = author
+            author = author,
+            imageData = imageData
         )
     }
 }

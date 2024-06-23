@@ -36,6 +36,8 @@ dependencies {
     //modules
     implementation(project(":core:data"))
     implementation(project(":data:memes-api"))
+    implementation(project(":data:favorites-api"))
+
 
     //di
     implementation(group = "javax.inject", name = "javax.inject", version = "1")

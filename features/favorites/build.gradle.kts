@@ -50,6 +50,9 @@ dependencies {
     //imageview gif
     implementation(libs.android.gif.drawable)
 
+    //glide
+    implementation(libs.glide)
+
     //base libs
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

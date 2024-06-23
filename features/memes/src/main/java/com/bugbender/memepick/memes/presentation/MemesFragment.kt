@@ -33,8 +33,11 @@ class MemesFragment : Fragment() {
             viewModel.getMeme()
         }
 
+        binding.favoriteButton.setOnClickListener {
+            viewModel.changeFavorite()
+        }
+
         viewModel.liveData().observe(viewLifecycleOwner) { uiState->
-            Log.d("k0dm", uiState.toString())
             uiState.show(binding)
         }
 
