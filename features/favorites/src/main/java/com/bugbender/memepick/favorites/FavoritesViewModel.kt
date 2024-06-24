@@ -26,7 +26,7 @@ class FavoritesViewModel @Inject constructor(
     override fun removeMeme(postLink: String) = runAsync({
         repository.removeMeme(postLink = postLink)
     }) {
-        //todo refresh the list in the adapter
+        liveDataWrapper.removeMeme(postLink = postLink)
     }
 
     override fun liveData() = liveDataWrapper.liveData()

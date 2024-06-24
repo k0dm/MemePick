@@ -1,11 +1,7 @@
 package com.bugbender.memepick.favorites.adapter
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import com.bugbender.memepick.favorites.databinding.ViewholderMemeBinding
 import com.bumptech.glide.Glide
-import pl.droidsonroids.gif.GifDrawable
-import java.io.ByteArrayInputStream
 
 interface FavoritesUi {
 
@@ -14,6 +10,8 @@ interface FavoritesUi {
     fun show(binding: ViewholderMemeBinding) = Unit
 
     fun remove(viewModel: ItemActions) = Unit
+
+    fun hasNotPostLink(postLink: String): Boolean = false
 
     data class Meme(
         private val postLink: String,
@@ -27,8 +25,7 @@ interface FavoritesUi {
 
         override fun type() = FavoritesType.Meme
 
-        override fun
-                show(binding: ViewholderMemeBinding) = with(binding) {
+        override fun show(binding: ViewholderMemeBinding) = with(binding) {
             subredditTextView.text = subreddit
             titleTextView.text = title
             userTextView.text = author
@@ -39,6 +36,8 @@ interface FavoritesUi {
         }
 
         override fun remove(viewModel: ItemActions) = viewModel.removeMeme(postLink)
+
+        override fun hasNotPostLink(postLink: String) = postLink != this.postLink
     }
 
 

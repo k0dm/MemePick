@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
+    android:layout_marginHorizontal="8dp"
     android:backgroundTint="@color/favorite_background"
     android:orientation="horizontal"
     android:weightSum="3"
@@ -19,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -41,8 +42,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                tools:text="dsftitle: He's a 355-Foot Tall Lizard with Radioactive Breath! Don't Mess with Him!dfsadfas" />
-
+                tools:text="title: He's a 355-Foot Tall Lizard with Radioactive Breath! Don't Mess with Him!dfsadfas" />
 
             <TextView
                 android:id="@+id/userTextView"
@@ -51,14 +51,16 @@
                 android:fontFamily="@font/roboto_regular"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:layout_marginBottom="8dp"
                 tools:text="u/TabletopStudios" />
 
         </LinearLayout>
 
 
         <LinearLayout
+            android:layout_height="match_parent"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <ImageView
