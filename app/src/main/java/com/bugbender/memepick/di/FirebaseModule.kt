@@ -1,10 +1,9 @@
 package com.bugbender.memepick.di
 
 import com.bugbender.mempick.core.firebase.AuthRepository
-
+import com.bugbender.mempick.core.firebase.FireStore
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
@@ -18,7 +17,15 @@ abstract class FirebaseModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun bindAuthRepository(repository: AuthRepository.Base): AuthRepository
+    abstract fun bindAuthRepositoryUserIdAndCheck(repository: AuthRepository.Base): AuthRepository.UserIdAndCheck
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindAuthRepositoryAll(repository: AuthRepository.Base): AuthRepository.All
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindFireStore(fireStore: FireStore.Base): FireStore
 
 //    companion object {
 //

@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val navigation: Navigation.Update,
-    private val authRepository: AuthRepository,
+    private val authRepository: AuthRepository.All,
     runAsync: RunAsync
 ) : BaseViewModel(runAsync) {
 

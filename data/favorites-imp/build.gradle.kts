@@ -35,7 +35,7 @@ android {
 
 dependencies {
     //modules
-    implementation(project(":core:data"))
+    implementation(project(":core:firebase"))
     implementation(project(":data:favorites-api"))
 
     //di
