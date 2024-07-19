@@ -1,25 +1,28 @@
 package com.bugbender.memepick.authentication
 
 import android.content.Context
-import androidx.lifecycle.LiveData
+import android.util.Log
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.bugbender.memepick.presentation.BaseViewModel
-import com.bugbender.memepick.presentation.LiveDataWrapper
 import com.bugbender.memepick.presentation.MessageLiveDataWrapper
-import com.bugbender.memepick.presentation.Navigation
 import com.bugbender.memepick.presentation.ProvideLiveData
 import com.bugbender.memepick.presentation.RunAsync
 import com.bugbender.mempick.core.firebase.AuthRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 
-@HiltViewModel
-class AuthenticationViewModel @Inject constructor(
+class AuthenticationViewModel @AssistedInject constructor(
     private val repository: AuthRepository.LoginWithGoogle,
     private val messageLiveDataWrapper: MessageLiveDataWrapper,
-    private val mapper: SignInAuthResultMapper,
+    @Assisted private val mapper: SignInAuthResultMapper,
     runAsync: RunAsync
 ) : BaseViewModel(runAsync), ProvideLiveData<String> {
 
+    init {
+        Log.d("k0dm", "vm${hashCode()} with mapper: ${mapper::class.simpleName}")
+    }
     fun singInWithGoogle(activity: Context) = runAsync({
         repository.loginWithGoogle(activity)
     }) { authResult ->
@@ -27,4 +30,24 @@ class AuthenticationViewModel @Inject constructor(
     }
 
     override fun liveData() = messageLiveDataWrapper.liveData()
+
+    @AssistedFactory
+    interface Factory {
+
+        fun create(mapper: SignInAuthResultMapper): AuthenticationViewModel
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    companion object {
+
+        fun provideViewModel(
+            mapper: SignInAuthResultMapper,
+            factory: Factory,
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return factory.create(mapper) as T
+            }
+        }
+    }
 }

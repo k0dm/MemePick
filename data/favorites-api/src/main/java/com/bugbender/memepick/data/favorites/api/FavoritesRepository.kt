@@ -3,7 +3,7 @@ package com.bugbender.memepick.data.favorites.api
 interface FavoritesRepository {
 
     interface Add {
-        suspend fun addMeme(meme: FavoriteMeme)
+        suspend fun addMeme(userId: String, meme: FavoriteMeme)
     }
 
     interface Remove {
@@ -11,7 +11,6 @@ interface FavoritesRepository {
     }
 
     interface Get {
-
         suspend fun allMemes(): FavoritesResult
     }
 

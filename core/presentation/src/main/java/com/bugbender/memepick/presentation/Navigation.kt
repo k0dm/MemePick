@@ -4,10 +4,16 @@ interface Navigation {
 
     interface Update : UpdateUi<Screen> {
 
-        fun goToAuthentication()
+        fun goToAuthenticationFromProfile()
 
         fun goToProfile()
+
+        fun goToFavoritesNotLogged()
+
+        fun goToFavorites()
+
+        fun goToAuthenticationFromFavorites()
     }
 
-    interface Mutable: Update, ProvideLiveData<Screen>
+    interface Mutable : Update, ProvideLiveData<Screen>
 }

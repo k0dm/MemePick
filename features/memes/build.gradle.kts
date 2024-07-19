@@ -42,6 +42,7 @@ dependencies {
     //modules
     implementation(project(":core:presentation"))
     implementation(project(":core:theme"))
+    implementation(project(":core:firebase"))
     implementation(project(":data:memes-api"))
     implementation(project(":data:favorites-api"))
 

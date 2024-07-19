@@ -10,13 +10,13 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val navigation: Navigation.Update,
-    private val authRepository: AuthRepository,
+    private val authRepository: AuthRepository.All,
     runAsync: RunAsync
 ) : BaseViewModel(runAsync) {
 
     fun checkIsUserLoggedIn() {
         if (!authRepository.isUserLogged()) {
-            navigation.goToAuthentication()
+            navigation.goToAuthenticationFromProfile()
         }
     }
 
@@ -24,6 +24,6 @@ class ProfileViewModel @Inject constructor(
 
     fun logOut() {
         authRepository.signOut()
-        navigation.goToAuthentication()
+        navigation.goToAuthenticationFromProfile()
     }
 }

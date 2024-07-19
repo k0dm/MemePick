@@ -1,8 +1,5 @@
 package com.bugbender.memepick.memes.presentation
 
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.bugbender.memepick.data.favorites.api.FavoriteMeme
@@ -10,12 +7,6 @@ import com.bugbender.memepick.data.favorites.api.FavoritesRepository
 import com.bugbender.memepick.memes.R
 import com.bugbender.memepick.memes.databinding.FragmentMemesBinding
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.gif.GifDrawable
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
-import java.io.ByteArrayOutputStream
 
 interface MemesUiState {
 
@@ -70,6 +61,7 @@ interface MemesUiState {
                 NotFavorite(postLink, subreddit, title, url, nsfw, author, imageData)
             } else {
                 favoritesRepository.addMeme(
+                    userId = "", //todo change
                     FavoriteMeme(
                         postLink,
                         subreddit,

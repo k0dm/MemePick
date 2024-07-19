@@ -3,7 +3,7 @@ package com.bugbender.memepick.data.favorites.imp.cache
 import com.bugbender.memepick.data.favorites.api.FavoriteContainsInCache
 import javax.inject.Inject
 
-interface FavoriteCacheDataSource: FavoriteContainsInCache {
+interface FavoritesCacheDataSource : FavoriteContainsInCache {
 
     suspend fun add(memeEntity: MemeEntity)
 
@@ -11,7 +11,7 @@ interface FavoriteCacheDataSource: FavoriteContainsInCache {
 
     suspend fun remove(postLink: String)
 
-    class Base @Inject constructor(private val dao: FavoritesDao) : FavoriteCacheDataSource {
+    class Base @Inject constructor(private val dao: FavoritesDao) : FavoritesCacheDataSource {
 
         override suspend fun add(memeEntity: MemeEntity) = dao.add(memeEntity)
 

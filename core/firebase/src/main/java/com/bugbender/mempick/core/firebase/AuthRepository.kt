@@ -1,6 +1,7 @@
 package com.bugbender.mempick.core.firebase
 
 import android.content.Context
+import android.util.Log
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
@@ -14,24 +15,36 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
-import javax.inject.Singleton
 
 interface AuthRepository {
-
-    fun isUserLogged(): Boolean
 
     interface LoginWithGoogle {
 
         suspend fun loginWithGoogle(context: Context): AuthResult
     }
 
-    fun userEmail(): String
+    interface CheckIsLogged {
 
-    fun signOut()
+        fun isUserLogged(): Boolean
+    }
 
-    class Base @Inject constructor(
-        private val provideResources: ProvideResources,
-    ) : AuthRepository, LoginWithGoogle {
+    interface UserIdAndCheck : CheckIsLogged {
+
+        fun userId(): String
+    }
+
+    interface All : LoginWithGoogle, UserIdAndCheck {
+
+        fun userEmail(): String
+
+        fun signOut()
+    }
+
+    class Base @Inject constructor(private val provideResources: ProvideResources) : All {
+
+        init {
+            Log.d("k0dm", "$this")
+        }
 
         private val auth: FirebaseAuth = Firebase.auth
 
@@ -39,7 +52,7 @@ interface AuthRepository {
 
         override suspend fun loginWithGoogle(context: Context): AuthResult {
             val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
-                .setFilterByAuthorizedAccounts(true)
+                .setFilterByAuthorizedAccounts(false)
                 .setServerClientId(provideResources.stringById(R.string.web_client_id))
                 .setAutoSelectEnabled(true)
                 .build()
@@ -87,6 +100,8 @@ interface AuthRepository {
 
         override fun userEmail() =
             auth.currentUser?.email ?: provideResources.stringById(R.string.no_email_address)
+
+        override fun userId() = auth.currentUser!!.uid
 
         override fun signOut() = auth.signOut()
     }

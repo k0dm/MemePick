@@ -1,7 +1,6 @@
 package com.bugbender.memepick.memes.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,11 @@ class MemesFragment : Fragment() {
     private var _binding: FragmentMemesBinding? = null
     private val binding: FragmentMemesBinding get() = _binding!!
     private val viewModel: MemesViewModel by viewModels()
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.checkIsUserLoggedIn()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

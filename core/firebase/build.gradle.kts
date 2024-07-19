@@ -35,7 +35,7 @@ android {
 
 dependencies {
     //modules
-    implementation(project(":core:data"))
+    api(project(":core:data"))
 
     //Firebase and auth
     implementation(platform(libs.firebase.bom))
@@ -47,6 +47,9 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)     //for credentials support from play services, for devices running  Android 13 and below.
     implementation(libs.googleid)
+
+    //Cloud Storage library
+    implementation(libs.firebase.firestore)
 
     //base libs
     implementation(libs.androidx.core.ktx)
