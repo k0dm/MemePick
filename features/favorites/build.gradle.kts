@@ -41,6 +41,7 @@ dependencies {
     //modules
     implementation(project(":core:theme"))
     implementation(project(":core:presentation"))
+    implementation(project(":core:firebase"))
     implementation(project(":data:favorites-api"))
 
     //hilt

@@ -16,7 +16,7 @@ class ProfileViewModel @Inject constructor(
 
     fun checkIsUserLoggedIn() {
         if (!authRepository.isUserLogged()) {
-            navigation.goToAuthentication()
+            navigation.goToAuthenticationFromProfile()
         }
     }
 
@@ -24,6 +24,6 @@ class ProfileViewModel @Inject constructor(
 
     fun logOut() {
         authRepository.signOut()
-        navigation.goToAuthentication()
+        navigation.goToAuthenticationFromProfile()
     }
 }

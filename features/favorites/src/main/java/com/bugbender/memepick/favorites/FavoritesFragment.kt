@@ -15,6 +15,11 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
 
     private val viewModel: FavoritesViewModel by viewModels()
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.checkIsUserLoggedIn()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -31,4 +36,3 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>() {
     override fun inflate(inflater: LayoutInflater, container: ViewGroup?) =
         FragmentFavoritesBinding.inflate(inflater, container, false)
 }
-

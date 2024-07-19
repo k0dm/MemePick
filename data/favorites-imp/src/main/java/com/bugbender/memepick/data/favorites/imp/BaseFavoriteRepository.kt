@@ -7,13 +7,11 @@ import com.bugbender.memepick.data.favorites.imp.cache.FavoritesCacheDataSource
 import com.bugbender.memepick.data.favorites.imp.cache.ToMemeEntityMapper
 import com.bugbender.memepick.data.favorites.imp.cache.ToMemeFirebaseMapper
 import com.bugbender.memepick.data.favorites.imp.cloud.FavoritesCloudDataSource
-import com.bugbender.mempick.core.firebase.AuthRepository
 import javax.inject.Inject
 
 class BaseFavoriteRepository @Inject constructor(
     private val cacheDataSource: FavoritesCacheDataSource,
     private val cloudDataSource: FavoritesCloudDataSource,
-    private val authRepository: AuthRepository.UserIdAndCheck,
     private val toMemeEntityMapper: ToMemeEntityMapper,
     private val toMemeFirebaseMapper: ToMemeFirebaseMapper
 ) : FavoritesRepository.All {
@@ -38,16 +36,15 @@ class BaseFavoriteRepository @Inject constructor(
             })
     }
 
-    override suspend fun addMeme(meme: FavoriteMeme) {
+    override suspend fun addMeme(userId: String, meme: FavoriteMeme) {
         cacheDataSource.add(meme.map(toMemeEntityMapper))
-        if (authRepository.isUserLogged()) {
 
-            cloudDataSource.add(
-                userId = authRepository.userId(),
-                favoriteMeme = meme.map(toMemeFirebaseMapper)
-            )
-        }
+        cloudDataSource.add(
+            userId = userId,
+            favoriteMeme = meme.map(toMemeFirebaseMapper)
+        )
     }
+
 
     override suspend fun removeMeme(postLink: String) = cacheDataSource.remove(postLink)
 }

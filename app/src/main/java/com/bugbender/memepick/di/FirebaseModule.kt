@@ -11,9 +11,9 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @Module
 @InstallIn(ViewModelComponent::class)
 abstract class FirebaseModule {
-    @Binds
-    @ViewModelScoped
-    abstract fun bindAuthRepositoryLoginWithGoogle(repository: AuthRepository.Base): AuthRepository.LoginWithGoogle
+//    @Binds
+//    @ViewModelScoped
+//    abstract fun bindAuthRepositoryLoginWithGoogle(repository: AuthRepository.Base): AuthRepository.LoginWithGoogle
 
     @Binds
     @ViewModelScoped
@@ -26,11 +26,4 @@ abstract class FirebaseModule {
     @Binds
     @ViewModelScoped
     abstract fun bindFireStore(fireStore: FireStore.Base): FireStore
-
-//    companion object {
-//
-//        @Provides
-//        fun provideAuth(): FirebaseAuth = Firebase.auth
-//    }
-
 }

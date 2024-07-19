@@ -1,6 +1,7 @@
 package com.bugbender.mempick.core.firebase
 
 import android.content.Context
+import android.util.Log
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
@@ -22,9 +23,12 @@ interface AuthRepository {
         suspend fun loginWithGoogle(context: Context): AuthResult
     }
 
-    interface UserIdAndCheck {
+    interface CheckIsLogged {
 
         fun isUserLogged(): Boolean
+    }
+
+    interface UserIdAndCheck : CheckIsLogged {
 
         fun userId(): String
     }
@@ -37,6 +41,10 @@ interface AuthRepository {
     }
 
     class Base @Inject constructor(private val provideResources: ProvideResources) : All {
+
+        init {
+            Log.d("k0dm", "$this")
+        }
 
         private val auth: FirebaseAuth = Firebase.auth
 
